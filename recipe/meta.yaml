@@ -11,7 +11,6 @@ source:
 
 build:
   number: 0
-  skip: true  # [win]
 
 requirements:
   build:
@@ -33,9 +32,11 @@ requirements:
     - meson-python
     - wheel
     - python-build
+    - libflang                               # [win]
   run:
     - python
     - numpy
+    - libflang                               # [win]
 
 test:
   imports:
@@ -56,3 +57,4 @@ extra:
     - has2k1
     - yihming
     - bli25
+    - Wainberg
