@@ -10,7 +10,7 @@ source:
   sha256: d519ff464b3137a19c968b9d8d0912a6523684016d40da0a6d030131dc5866b0
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -21,7 +21,9 @@ requirements:
     - meson-python                           # [build_platform != target_platform]
     - {{ compiler("c") }}
     - {{ stdlib("c") }}
-    - {{ compiler("fortran") }}
+    - {{ compiler("fortran") }}              # [not win]
+    - flang_{{ target_platform }} >=22       # [win]
+    - flang-rt_{{ target_platform }} >=22    # [win]
     - ninja
   host:
     - python
@@ -32,11 +34,11 @@ requirements:
     - meson-python
     - wheel
     - python-build
-    - libflang                               # [win]
+    - flang-rt_{{ target_platform }} >=22    # [win]
   run:
     - python
     - numpy
-    - libflang                               # [win]
+    - flang-rt_{{ target_platform }} >=22    # [win]
 
 test:
   imports:
